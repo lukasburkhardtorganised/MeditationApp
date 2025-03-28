@@ -42,7 +42,7 @@ const welcomePerson = () => {
 
         <Link
           style={[styles.signUpButton, { width: scale.w(374), height: scale.h(63), top: scale.h(739), alignSelf: 'center' }]}
-          href="/(onboarding)/registration"
+          href="/(onboarding)/welcomeTopic"
         >
           <Text style={styles.signUpText}>GET STARTED</Text>
         </Link>

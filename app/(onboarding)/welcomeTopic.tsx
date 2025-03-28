@@ -1,5 +1,7 @@
 import { Stack } from 'expo-router';
-import { Image, Text, View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { Image, Text, View, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from 'react-native';
+
+import { useRouter } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
@@ -19,6 +21,9 @@ const topics = [
 ];
 
 export default function WelcomeTopic() {
+
+    const router = useRouter();
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Stack.Screen options={{ headerShown: false }} />
@@ -31,10 +36,14 @@ export default function WelcomeTopic() {
                     {topics.filter((_, i) => i % 2 === 0).map((item, index) => {
                         const height = Math.floor(index) % 2 === 0 ? largeCardHeight : smallCardHeight;
                         return (
-                            <View key={index} style={[styles.card, { height, backgroundColor: item.backgroundColor }]}>
+                            <TouchableOpacity
+                                key={index}
+                                style={[styles.card, { height, backgroundColor: item.backgroundColor }]}
+                                onPress={() => router.push('/(onboarding)/welcome')}
+                            >
                                 <Image source={item.image} style={styles.cardImage} />
                                 <Text style={styles.cardText}>{item.title}</Text>
-                            </View>
+                            </TouchableOpacity>
                         );
                     })}
                 </View>
@@ -43,10 +52,15 @@ export default function WelcomeTopic() {
                     {topics.filter((_, i) => i % 2 !== 0).map((item, index) => {
                         const height = Math.floor(index) % 2 === 0 ? smallCardHeight : largeCardHeight;
                         return (
-                            <View key={index} style={[styles.card, { height, backgroundColor: item.backgroundColor }]}>
+
+                            <TouchableOpacity
+                                key={index}
+                                style={[styles.card, { height, backgroundColor: item.backgroundColor }]}
+                                onPress={() => router.push('/(onboarding)/welcome')}
+                            >
                                 <Image source={item.image} style={styles.cardImage} />
                                 <Text style={styles.cardText}>{item.title}</Text>
-                            </View>
+                            </TouchableOpacity>
                         );
                     })}
                 </View>
