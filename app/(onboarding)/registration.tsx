@@ -55,9 +55,9 @@ const Registration = () => {
             <TextInput style={styles.input} value={name} onChangeText={setName}></TextInput>
             <TextInput style={styles.input} value={email} onChangeText={setEmail}></TextInput>
 
-            <Link href="/(onboarding)/welcomePerson" style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => router.push('/(onboarding)/welcomePerson')}>
                 <Text style={styles.buttonText}>LOG IN</Text>
-            </Link>
+            </TouchableOpacity>
 
             <Text style={styles.text_forget_password}>OR LOG IN WITH EMAIL</Text>
 
@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.7,    // 14 * 0.05
         color: '#A1A4B2',         // optional: anpassbar je nach Hintergrund
         textAlign: 'center',   // optional: zentriert anzeigen
-      },
+    },
 
     backButton: {
         position: 'absolute',
@@ -220,6 +220,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: 20,
+        marginBottom: 20,
         width: '90%',
         height: 50,
         paddingHorizontal: 20,
@@ -227,6 +228,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#8E97FD',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
     },
     buttonText: {
         fontFamily: 'HelveticaNeue',
@@ -236,6 +238,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.7,      // 5% von 14px → 14 * 0.05
         color: 'white',
         textAlign: 'center',
+        alignSelf: 'center',
     },
     text_forget_password: {
 
@@ -249,9 +252,9 @@ const styles = StyleSheet.create({
         letterSpacing: 0.7, // 5% von 14
         textAlign: 'center',
         color: 'black',
-      },
-    
-      text_sign_up2: {
+    },
+
+    text_sign_up2: {
         fontFamily: 'HelveticaNeue',
         fontWeight: '400',
         fontSize: 14,
@@ -259,6 +262,6 @@ const styles = StyleSheet.create({
         letterSpacing: 0.7,
         color: '#3F414E', // Optional: andere Farbe oder Stil
         textDecorationLine: 'underline', // falls du es klickbar aussehen lassen willst
-      },
+    },
 
 })
