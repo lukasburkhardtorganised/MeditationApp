@@ -23,7 +23,7 @@ const Index = () => {
 
       <Text style={styles.headline2}>We are what we do</Text>
       <Text style={styles.text1}>Thousand of people are usign silent moon for smalls meditation </Text>
-      <Link style={styles.link} href="/(onboarding)/registration">SIGN UP</Link>
+      <Link style={styles.link} href="/(onboarding)/welcome">SIGN UP</Link>
       <Text style={styles.text2} >
         ALREADY HAVE AN ACCOUNT?{' '}
         <Link style={styles.loginText} href="/(onboarding)/login">LOG INN</Link>
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#FAF8F5',
+    alignSelf: 'center',
   },
   logoRow: {
     paddingTop: 40,

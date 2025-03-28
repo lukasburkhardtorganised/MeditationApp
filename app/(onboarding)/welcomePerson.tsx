@@ -31,7 +31,7 @@ const welcomePerson = () => {
       {/* Vordergrund-Content */}
       <View>
         <View style={styles.logoRow}>
-          <Text style={styles.headline1}>Silentt</Text>
+          <Text style={styles.headline1}>Silent</Text>
           <Image source={require('@/assets/images/welcome1.png')} style={styles.image_welcome1} />
           <Text style={styles.headline1}>Moon</Text>
         </View>
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
     fontFamily: 'HelveticaNeue',
     fontWeight: '400',
     fontSize: 30,
-    lineHeight: 40.5,
-    letterSpacing: 0.1,
+    lineHeight: 41.1, // 137% von 30
+    letterSpacing: 0.3, // 1% von 30
     textAlign: 'center',
     color: '#FFECCC',
   },
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
     fontFamily: 'HelveticaNeue',
     fontWeight: '100',
     fontSize: 30,
-    lineHeight: 40.5,
-    letterSpacing: 0.1,
+    lineHeight: 41.1, // 137% von 30
+    letterSpacing: 0.3, // 1% von 30
     textAlign: 'center',
     color: '#FFECCC',
   },
