@@ -63,7 +63,7 @@ const Registration = () => {
 
             <Text style={styles.text_sign_up1}>
                 ALREADY HAVE AN ACCOUNT?{' '}
-                <Text style={styles.text_sign_up2} onPress={() => router.push('/(tabs)/home')}>
+                <Text style={styles.text_sign_up2} onPress={() => router.push('/(onboarding)/login')}>
                     SIGN UP
                 </Text>
             </Text>

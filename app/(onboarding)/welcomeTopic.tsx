@@ -39,7 +39,7 @@ export default function WelcomeTopic() {
                             <TouchableOpacity
                                 key={index}
                                 style={[styles.card, { height, backgroundColor: item.backgroundColor }]}
-                                onPress={() => router.push('/(onboarding)/welcome')}
+                                onPress={() => router.push('/(onboarding)/welcomeTime')}
                             >
                                 <Image source={item.image} style={styles.cardImage} />
                                 <Text style={styles.cardText}>{item.title}</Text>
@@ -56,7 +56,7 @@ export default function WelcomeTopic() {
                             <TouchableOpacity
                                 key={index}
                                 style={[styles.card, { height, backgroundColor: item.backgroundColor }]}
-                                onPress={() => router.push('/(onboarding)/welcome')}
+                                onPress={() => router.push('/(onboarding)/welcomeTime')}
                             >
                                 <Image source={item.image} style={styles.cardImage} />
                                 <Text style={styles.cardText}>{item.title}</Text>

@@ -115,7 +115,7 @@ export default function welcomeTime() {
                 })}
             </View>
 
-                  <Link style={styles.link} href="/(onboarding)/welcomeTime"> SAVE </Link>
+                  <Link style={styles.link} href="/(tabs)/home"> SAVE </Link>
 
 
         </View>
