@@ -24,15 +24,15 @@ const topics = [
 
 const cards = [
   {
-    title: 'Reduce Stress',
-    subtitle: 'COURSE',
+    title: 'Night Island',
+    subtitle: '45 MIN - SLEEP MUSIC',
     duration: '3-10 MIN',
     backgroundColor: '#4C53B4',
     image: require('@/assets/images/sleep/picture1.png'),
   },
   {
-    title: 'Relaxation',
-    subtitle: 'MUSIC',
+    title: 'Sweet Sleep',
+    subtitle: '45 MIN - SLEEP MUSIC',
     backgroundColor: '#4C53B4',
     image: require('@/assets/images/sleep/picture2.png'),
   },
@@ -122,43 +122,54 @@ const sleep = () => {
         </ScrollView>
       </ImageBackground>
 
-      <View style={{ alignItems: 'center', width: '100%', marginBottom: 20, marginTop: 20 }}>
-        <View
-          style={[
-            styles.cardBigModified,
-            {
-              backgroundColor: 'black',
-            },
-          ]}
+      {/* Hier die große Karte hinzufügen: */}    
+      <View style={{ alignItems: 'center', width: '95%', marginBottom: 20, marginTop: 20}}>
+        <ImageBackground
+          source={require('@/assets/images/sleep/background3.png')}
+          style={styleBigImage.cardBigModified}
+          imageStyle={{ borderRadius: 15 }}
         >
-          <Image source={require('@/assets/images/sleep/background3.png')} style={styles.cardBigImage} />
-        </View>
-
+          <View style={styleBigImage.cardBigContent}>
+            <Text style={styleBigImage.cardBigTitle}>The Ocean Moon</Text>
+            <Text style={styleBigImage.cardBigSubtitle}>
+              Non-stop 8-hour mixes of our{'\n'}most popular sleep audio
+            </Text>
+            <TouchableOpacity style={styleBigImage.startButton}>
+              <Text style={styleBigImage.startButtonText}>START</Text>
+            </TouchableOpacity>
+          </View>
+        </ImageBackground>
       </View>
 
+      {/* Hier die Karten hinzufügen: */}
       {Array.from({ length: Math.ceil(cards.length / 2) }).map((_, rowIndex) => (
         <View
           key={rowIndex}
-          style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 }}
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: 10,
+            paddingHorizontal: 5,
+          }}
         >
           {cards.slice(rowIndex * 2, rowIndex * 2 + 2).map((card, index) => (
             <TouchableOpacity
               key={index}
-              style={{ alignItems: 'center', width: '48%' }}
+              style={{ alignItems: 'flex-start', width: '48%' }}
               onPress={() => router.push({ pathname: '/screens/sleep_screens/playOption', params: { title: card.title } })}
             >
               <View
                 style={[
-                  styles.cardModified,
+                  styleListe.cardModified,
                   {
                     backgroundColor: card.backgroundColor,
                   },
                 ]}
               >
-                <Image source={card.image} style={styles.cardTopRightImage} />
+                <Image source={card.image} style={styleListe.cardTopRightImage} />
               </View>
-              <Text style={styles.cardTextBelow}>{card.title}</Text>
-              <Text style={styles.cardTextBelow}>{card.subtitle}</Text>
+              <Text style={styleListe.cardTextBelow}>{card.title}</Text>
+              <Text style={styleListe.cardSmallTextBelow}>{card.subtitle}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -169,6 +180,106 @@ const sleep = () => {
 }
 
 export default sleep
+
+const styleBigImage = StyleSheet.create({
+
+  cardBigModified: {
+    width: '100%',
+    height: 230,
+    borderRadius: 10,
+    position: 'relative',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    marginTop: 10,
+    alignSelf: 'center', // <---- hinzugefügt
+  },
+  cardBigContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 30,
+  },
+
+  cardBigTitle: {
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '700',
+    fontSize: 24,
+    color: '#FFECCC',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+
+  cardBigSubtitle: {
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '300',
+    fontSize: 14,
+    color: '#EBEAEC',
+    textAlign: 'center',
+    lineHeight: 20,
+    marginBottom: 20,
+  },
+
+  startButton: {
+    backgroundColor: '#fff',
+    paddingHorizontal: 30,
+    paddingVertical: 10,
+    borderRadius: 25,
+  },
+
+  startButtonText: {
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '700',
+    fontSize: 14,
+    color: '#3F414E',
+  },
+})
+
+const styleListe = StyleSheet.create({
+  cardModified: {
+    width: width / 2 - 30, // z. B. für 2 Cards nebeneinander mit Margin
+    height: width / 2.8,   // statt fixer Höhe – skaliert mit Gerät
+    borderRadius: 10,
+    padding: 15,
+    position: 'relative',
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+
+
+  cardTopRightImage: {
+    width: width / 2 - 30, // z. B. für 2 Cards nebeneinander mit Margin
+    height: width / 2.3,   // statt fixer Höhe – skaliert mit Gerät
+    resizeMode: 'contain',
+    position: 'absolute',
+  },
+
+  cardBigImage: {
+    width: width, // z. B. für 2 Cards nebeneinander mit Margin
+    height: 230,   // statt fixer Höhe – skaliert mit Gerät
+    resizeMode: 'contain',
+    position: 'absolute',
+  },
+
+  cardTextBelow: {
+    marginTop: 8,
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '700',
+    fontSize: 18,
+    lineHeight: 18 * 1.08, // 108% von 18px
+    letterSpacing: 0,
+    color: '#E6E7F2',
+  },
+  cardSmallTextBelow: {
+    marginTop: 8,
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '400',
+    fontSize: 11,
+    lineHeight: 11 * 1.08, // 108% von 11px = 11.88
+    letterSpacing: 0.55,   // 5% von 11px = 0.55
+    color: '#98A1BD',
+  },
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -192,10 +303,10 @@ const styles = StyleSheet.create({
     letterSpacing: 0,
     color: '#E6E7F2',
     textAlign: 'center',
-    marginTop: 100,
-    paddingLeft: 20,
-    paddingRight: 20,
+    marginTop: 60, // vorher: 100
+    paddingHorizontal: 20,
   },
+
   text2: {
     fontFamily: 'HelveticaNeue',
     fontWeight: '300',
@@ -203,11 +314,10 @@ const styles = StyleSheet.create({
     lineHeight: 16 * 1.35, // 21.6
     letterSpacing: 0,
     color: '#EBEAEC',
-    marginTop: 20,
-    marginBottom: 40,
+    marginTop: 10, // vorher: 20
+    marginBottom: 20, // vorher: 40
     textAlign: 'center',
-    paddingLeft: 30,
-    paddingRight: 30,
+    paddingHorizontal: 30,
   },
   grid: {
     flexDirection: 'row',
@@ -358,14 +468,7 @@ const styles = StyleSheet.create({
 
 
 
-  cardBigModified: {
-    width: '90%', // z. B. für 2 Cards nebeneinander mit Margin
-    height: 230,   // statt fixer Höhe – skaliert mit Gerät
-    borderRadius: 10,
-    position: 'relative',
-    justifyContent: 'center',
-    overflow: 'hidden',
-  },
+
 
 
 

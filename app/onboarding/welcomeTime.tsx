@@ -18,7 +18,7 @@ const data = [...Array(100).keys()].map((index) => ({
     label: index.toString(),
 }))
 
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const DAYS = ['Su', 'M', 'T', 'W', 'TH', 'F', 'S'];
 
 
 
@@ -115,7 +115,9 @@ export default function welcomeTime() {
                 })}
             </View>
 
-                  <Link style={styles.link} href="/(tabs)/home"> SAVE </Link>
+            <Link style={styles.link} href="/(tabs)/home"> SAVE </Link>
+
+            <Text style={styles.noThanks}>NO THANKS</Text>
 
 
         </View>
@@ -190,15 +192,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: 20,
-      },
-      
-      dayWrapper: {
+    },
+
+    dayWrapper: {
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
-      },
-      
-      dayCircle: {
+    },
+
+    dayCircle: {
         width: 40,
         height: 40,
         borderRadius: 20,
@@ -209,9 +211,9 @@ const styles = StyleSheet.create({
         fontFamily: 'HelveticaNeue',
         fontWeight: '600',
         fontSize: 14,
-      },
+    },
 
-      link: {
+    link: {
         width: '100%',
         padding: 20,
         backgroundColor: '#8E97FD',
@@ -221,5 +223,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         alignSelf: 'center',
-      },
+    },
+    noThanks: {
+        fontFamily: 'HelveticaNeue',
+        fontWeight: '400',
+        fontSize: 14,
+        lineHeight: 32.4, // 135% von 24px
+        letterSpacing: 0,
+        color: '#3F414E',
+        textAlign: 'center',}
 });

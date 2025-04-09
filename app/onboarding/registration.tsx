@@ -7,6 +7,9 @@ const Registration = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [checked, setChecked] = useState(false);
 
     return (
 
@@ -29,7 +32,7 @@ const Registration = () => {
                 <Text style={styles.textInImage}>Create your account</Text>
 
 
-                <Link href="/(onboarding)/registration" style={styles_social_button.linkFacebook}>
+                <Link href="/onboarding/registration" style={styles_social_button.linkFacebook}>
                     <View style={styles_social_button.facebookButtonContent}>
                         <Image
                             source={require('@/assets/images/facebook_logo.png')}
@@ -54,25 +57,61 @@ const Registration = () => {
 
             <TextInput style={styles.input} value={name} onChangeText={setName}></TextInput>
             <TextInput style={styles.input} value={email} onChangeText={setEmail}></TextInput>
+            <TextInput style={styles.input} value={password} onChangeText={setEmail}></TextInput>
 
-            <TouchableOpacity style={styles.button} onPress={() => router.push('/(onboarding)/welcomePerson')}>
-                <Text style={styles.buttonText}>LOG IN</Text>
+
+            <View style={styles_text_with_checkbox.container}>
+                <Text style={styles_text_with_checkbox.text}>
+                    i have read the <Text style={styles_text_with_checkbox.link}>Privacy Policy</Text>
+                </Text>
+                <TouchableOpacity
+                    onPress={() => setChecked(!checked)}
+                    style={[
+                        styles_text_with_checkbox.checkbox,
+                        checked && styles_text_with_checkbox.checkboxChecked,
+                    ]}
+                />
+            </View>
+            <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding/welcomePerson')}>
+                <Text style={styles.buttonText}>GET STARTED</Text>
             </TouchableOpacity>
 
-            <Text style={styles.text_forget_password}>OR LOG IN WITH EMAIL</Text>
-
-            <Text style={styles.text_sign_up1}>
-                ALREADY HAVE AN ACCOUNT?{' '}
-                <Text style={styles.text_sign_up2} onPress={() => router.push('/(onboarding)/login')}>
-                    SIGN UP
-                </Text>
-            </Text>
 
         </View>
     )
 }
 
 export default Registration
+
+const styles_text_with_checkbox = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 20,
+        paddingHorizontal: 10,
+    },
+    text: {
+        fontSize: 14,
+        fontFamily: 'HelveticaNeue',
+        color: '#A1A4B2',
+    },
+    link: {
+        color: '#8E97FD',
+        fontWeight: '600',
+    },
+    checkbox: {
+        width: 20,
+        height: 20,
+        borderRadius: 4,
+        borderWidth: 1.5,
+        borderColor: '#A1A4B2',
+    },
+    checkboxChecked: {
+        backgroundColor: '#8E97FD',
+        borderColor: '#8E97FD',
+    },
+})
 
 const styles_social_button = StyleSheet.create({
     linkFacebook: {
@@ -169,6 +208,7 @@ const styles = StyleSheet.create({
     },
 
     textInImage: {
+        paddingTop: 40,
         fontFamily: 'HelveticaNeue',
         fontWeight: '700',
         fontSize: 28,
@@ -188,6 +228,8 @@ const styles = StyleSheet.create({
     },
 
     backButton: {
+        width: 55,
+        height: 55,
         position: 'absolute',
         top: 40,
         left: 20,
@@ -197,11 +239,13 @@ const styles = StyleSheet.create({
         borderColor: '#EBEAEC',
         borderRadius: 100,
         zIndex: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     backImage: {
-        width: 16,   // anpassen je nach Icon-Größe
-        height: 16,
+        width: 18,   // anpassen je nach Icon-Größe
+        height: 18,
         resizeMode: 'contain',
         color: '#3F414E',
     },
@@ -222,7 +266,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
         width: '90%',
-        height: 50,
+        height: 63,
         paddingHorizontal: 20,
         borderRadius: 38,
         backgroundColor: '#8E97FD',

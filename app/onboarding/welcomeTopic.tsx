@@ -10,12 +10,12 @@ const largeCardHeight = 210;
 const smallCardHeight = 167;
 
 const topics = [
-    { title: 'Reduce Stress', image: require('@/assets/images/welcomeTopic/stresss.png'), backgroundColor: '#808AFF' },
+    { title: 'Reduce Stress', image: require('@/assets/images/welcomeTopic/stresss.png'), backgroundColor: '#808AFF', textColor: '#FFFFFF' },
     { title: 'Improve Performance', image: require('@/assets/images/welcomeTopic/performance1.png'), backgroundColor: '#FA6E5A' },
     { title: 'Reduce Anxiety', image: require('@/assets/images/welcomeTopic/anxiety.png'), backgroundColor: '#FFCF86' },
     { title: 'Increase Happiness', image: require('@/assets/images/welcomeTopic/happiness.png'), backgroundColor: '#FEB18F' },
-    { title: 'Reduce Stress', image: require('@/assets/images/welcomeTopic/stresss.png'), backgroundColor: '#808AFF' },
-    { title: 'Improve Performance', image: require('@/assets/images/welcomeTopic/performance1.png'), backgroundColor: '#FA6E5A' },
+    { title: 'Personal Growth', image: require('@/assets/images/welcomeTopic/growth.png'), backgroundColor: '#6CB28E' },
+    { title: 'Better Sleep', image: require('@/assets/images/welcomeTopic/better_sleep.png'), backgroundColor: '#3F414E' },
     { title: 'Reduce Anxiety', image: require('@/assets/images/welcomeTopic/anxiety.png'), backgroundColor: '#FFCF86' },
     { title: 'Increase Happiness', image: require('@/assets/images/welcomeTopic/happiness.png'), backgroundColor: '#FEB18F' },
 ];
@@ -39,7 +39,7 @@ export default function WelcomeTopic() {
                             <TouchableOpacity
                                 key={index}
                                 style={[styles.card, { height, backgroundColor: item.backgroundColor }]}
-                                onPress={() => router.push('/(onboarding)/welcomeTime')}
+                                onPress={() => router.push('/onboarding/welcomeTime')}
                             >
                                 <Image source={item.image} style={styles.cardImage} />
                                 <Text style={styles.cardText}>{item.title}</Text>
@@ -56,7 +56,7 @@ export default function WelcomeTopic() {
                             <TouchableOpacity
                                 key={index}
                                 style={[styles.card, { height, backgroundColor: item.backgroundColor }]}
-                                onPress={() => router.push('/(onboarding)/welcomeTime')}
+                                onPress={() => router.push('/onboarding/welcomeTime')}
                             >
                                 <Image source={item.image} style={styles.cardImage} />
                                 <Text style={styles.cardText}>{item.title}</Text>
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     },
     text1: {
         fontFamily: 'HelveticaNeue',
-        fontWeight: '400',
+        fontWeight: '700',
         fontSize: 30,
         lineHeight: 41.1,
         letterSpacing: 0.3,
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0,
         textAlign: 'center',
         padding: 10,
-        color: '#3F414E',
+        color: '#EBEAEC',
     },
 
     gridContainer: {

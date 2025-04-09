@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, Image, Dimensions, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { Link, Stack } from 'expo-router';
+import { Link, router, Stack } from 'expo-router';
 
 const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 const scale = {
-    w: (val: number): number => (screenWidth / 414) * val,
-    h: (val: number): number => (screenHeight / 896) * val,
+  w: (val: number): number => (screenWidth / 414) * val,
+  h: (val: number): number => (screenHeight / 896) * val,
 };
 
 const welcomePerson = () => {
@@ -19,7 +19,7 @@ const welcomePerson = () => {
         <Image source={require('@/assets/images/Ellipse 12.png')} style={[styles.bg, { width: scale.w(422), height: scale.h(422), top: scale.h(404), left: scale.w(-4) }]} />
         <Image source={require('@/assets/images/Ellipse 11.png')} style={[styles.bg, { width: scale.w(354), height: scale.h(354), top: scale.h(438), left: scale.w(30) }]} />
         <Image source={require('@/assets/images/Ellipse 10.png')} style={[styles.bg, { width: scale.w(284), height: scale.h(284), top: scale.h(473), left: scale.w(65) }]} />
-        <Image source={require('@/assets/images/Group.png')} style={[styles.bg, { width: scale.w(430), height: scale.h(258), top: scale.h(397), left: scale.w(-9) }]} />
+        <Image source={require('@/assets/images/Group.png')} style={[styles.bg, { width: scale.w(430), height: scale.h(268), top: scale.h(397), left: scale.w(-9) }]} />
         <Image source={require('@/assets/images/Rectangle 211.png')} style={[styles.bg, { width: scale.w(416), height: scale.h(266), top: scale.h(654), left: scale.w(-2) }]} />
         <Image source={require('@/assets/images/Ellipse 15.png')} style={[styles.bg, { width: scale.w(6), height: scale.h(6), top: scale.h(352), left: scale.w(27) }]} />
         <Image source={require('@/assets/images/Ellipse 14.png')} style={[styles.bg, { width: scale.w(12), height: scale.h(12), top: scale.h(357), left: scale.w(33) }]} />
@@ -40,18 +40,60 @@ const welcomePerson = () => {
         <Text style={styles.text2}>to Silent Moon</Text>
         <Text style={styles.text3}>Explore the app, find some peace of mind to prepare for meditation</Text>
 
-        <Link
+        <TouchableOpacity style={[styleButton.button, { width: scale.w(374), height: scale.h(63), top: scale.h(739), alignSelf: 'center' }]}
+          onPress={() => router.push('/onboarding/welcomeTopic')}>
+          <Text style={styleButton.buttonText}>GET STARTED</Text>
+        </TouchableOpacity>
+
+        {/* <Link
           style={[styles.signUpButton, { width: scale.w(374), height: scale.h(63), top: scale.h(739), alignSelf: 'center' }]}
           href="/(onboarding)/welcomeTopic"
         >
           <Text style={styles.signUpText}>GET STARTED</Text>
-        </Link>
+        </Link> */}
       </View>
     </View>
   );
 };
 
 export default welcomePerson;
+
+const styleButton = StyleSheet.create({
+  button: {
+    position: 'absolute',
+    backgroundColor: '#fff',
+    borderRadius: 38,
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#EBEAEC'
+  },
+  buttonText: {
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '700',
+    fontSize: 14,
+    lineHeight: 63,
+    letterSpacing: 0.7,
+    color: '#3F414E',
+    textAlign: 'center',
+  },
+
+  signUpButton: {
+    position: 'absolute',
+    backgroundColor: '#fff',
+    borderRadius: 38,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  signUpText: {
+    fontFamily: 'HelveticaNeue',
+    fontWeight: '700',
+    fontSize: 14,
+    lineHeight: 63,
+    letterSpacing: 0.7,
+    color: '#3F414E',
+    textAlign: 'center',
+  },
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -112,20 +154,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#EBEAEC',
   },
-  signUpButton: {
-    position: 'absolute',
-    backgroundColor: '#fff',
-    borderRadius: 38,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  signUpText: {
-    fontFamily: 'HelveticaNeue',
-    fontWeight: '700',
-    fontSize: 14,
-    lineHeight: 63,
-    letterSpacing: 0.7,
-    color: '#3F414E',
-    textAlign: 'center',
-  },
+
 });

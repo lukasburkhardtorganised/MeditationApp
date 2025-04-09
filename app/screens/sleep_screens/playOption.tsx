@@ -1,14 +1,33 @@
-import { View, StyleSheet, ImageBackground, Text, GestureResponderEvent, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, ImageBackground, Text, GestureResponderEvent, Image, ScrollView, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
 import { router, Stack } from 'expo-router';
 
 import React, { useState } from 'react';
 
+const { width } = Dimensions.get('window');
+
 const tracks = [
     { title: 'Focus Attention', duration: '10 MIN' },
     { title: 'Body Scan', duration: '5 MIN' },
     { title: 'Making Happiness', duration: '3 MIN' },
+];
+
+const cards = [
+    {
+        title: 'Moon Clouds',
+        subtitle: '45 MIN - SLEEP MUSIC',
+        duration: '3-10 MIN',
+        backgroundColor: '#4C53B4',
+        image: require('@/assets/images/sleep/picture1.png'),
+    },
+    {
+        title: 'Sweet Sleep',
+        subtitle: '45 MIN - SLEEP MUSIC',
+        backgroundColor: '#4C53B4',
+        image: require('@/assets/images/sleep/picture2.png'),
+    },
+    // beliebig erweiterbar
 ];
 
 const playOption = () => {
@@ -17,7 +36,7 @@ const playOption = () => {
     const [selectedTrack, setSelectedTrack] = useState<number | null>(0);
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.container}>
             <View style={styles.container}>
                 <Stack.Screen options={{ headerShown: false }} />
                 <ImageBackground
@@ -80,6 +99,38 @@ const playOption = () => {
                         </View>
                     </View>
 
+                    {Array.from({ length: Math.ceil(cards.length / 2) }).map((_, rowIndex) => (
+                        <View
+                            key={rowIndex}
+                            style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 10 }}
+                        >
+                            {cards.slice(rowIndex * 2, rowIndex * 2 + 2).map((card, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={{ alignItems: 'flex-start', width: '48%' }}
+                                    onPress={() => router.push({ pathname: '/screens/sleep_screens/playOption', params: { title: card.title } })}
+                                >
+                                    <View
+                                        style={[
+                                            styleListe.cardModified,
+                                            {
+                                                backgroundColor: card.backgroundColor,
+                                            },
+                                        ]}
+                                    >
+                                        <Image source={card.image} style={styleListe.cardTopRightImage} />
+                                    </View>
+                                    <Text style={styleListe.cardTextBelow}>{card.title}</Text>
+                                    <Text style={styleListe.cardSmallTextBelow}>{card.subtitle}</Text>
+                                </TouchableOpacity>
+                            ))}
+                        </View>
+                    ))}
+
+                    <TouchableOpacity style={styleButton.playButton} onPress={() => console.log('Play pressed')}>
+                        <Text style={styleButton.playButtonText}>PLAY</Text>
+                    </TouchableOpacity>
+
 
                 </View>
 
@@ -91,78 +142,67 @@ const playOption = () => {
 export default playOption
 
 
-const styleListe = StyleSheet.create({
-    trackItem: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#F0F1F6',
-    },
-
-    playButtonCircle: {
-        width: 36,
-        height: 36,
-        borderRadius: 18,
-        borderWidth: 1.5,
-        borderColor: '#8E97FD',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 15,
-    },
-
-    playButtonCircleActive: {
+const styleButton = StyleSheet.create({
+    playButton: {
+        marginTop: 20,
         backgroundColor: '#8E97FD',
+        paddingVertical: 16,
+        borderRadius: 38,
+        alignItems: 'center',
     },
 
-    trackTextWrapper: {
-        flexDirection: 'column',
-    },
-
-    trackTitle: {
-        fontFamily: 'HelveticaNeue',
-        fontWeight: '700',
+    playButtonText: {
+        color: 'white',
         fontSize: 16,
-        color: '#3F414E',
-    },
-
-    trackDuration: {
-        fontFamily: 'HelveticaNeue',
-        fontWeight: '400',
-        fontSize: 12,
-        color: '#A1A4B2',
-        marginTop: 4,
+        fontWeight: '700',
+        letterSpacing: 1,
     },
 })
 
-const stylesRow = StyleSheet.create({
-    tabRow: {
-        flexDirection: 'row',
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
-        marginTop: 10,
-        marginBottom: 10,
+const styleListe = StyleSheet.create({
+    cardModified: {
+        width: width / 2 - 30, // z. B. für 2 Cards nebeneinander mit Margin
+        height: width / 2.8,   // statt fixer Höhe – skaliert mit Gerät
+        borderRadius: 10,
+        padding: 15,
+        position: 'relative',
+        justifyContent: 'center',
+        overflow: 'hidden',
     },
-    tabButton: {
-        flex: 1,
-        alignItems: 'center',
-        paddingBottom: 10,
+
+
+    cardTopRightImage: {
+        width: width / 2 - 30, // z. B. für 2 Cards nebeneinander mit Margin
+        height: width / 2.3,   // statt fixer Höhe – skaliert mit Gerät
+        resizeMode: 'contain',
+        position: 'absolute',
     },
-    tabText: {
-        fontSize: 14,
-        color: '#A1A4B2',
-        fontWeight: '600',
+
+    cardBigImage: {
+        width: width, // z. B. für 2 Cards nebeneinander mit Margin
+        height: 230,   // statt fixer Höhe – skaliert mit Gerät
+        resizeMode: 'contain',
+        position: 'absolute',
     },
-    tabTextActive: {
-        color: '#8E97FD',
-    },
-    underline: {
-        marginTop: 6,
-        height: 2,
-        width: 40,
-        backgroundColor: '#8E97FD',
-        borderRadius: 1,
-    },
+
+    cardTextBelow: {
+        marginTop: 8,
+        fontFamily: 'HelveticaNeue',
+        fontWeight: '700',
+        fontSize: 18,
+        lineHeight: 18 * 1.08, // 108% von 18px
+        letterSpacing: 0,
+        color: '#E6E7F2',
+      },
+      cardSmallTextBelow: {
+        marginTop: 8,
+        fontFamily: 'HelveticaNeue',
+        fontWeight: '400',
+        fontSize: 11,
+        lineHeight: 11 * 1.08, // 108% von 11px = 11.88
+        letterSpacing: 0.55,   // 5% von 11px = 0.55
+        color: '#98A1BD',
+      },
 })
 
 const styles = StyleSheet.create({
@@ -217,7 +257,7 @@ const styles = StyleSheet.create({
         fontSize: 34,
         lineHeight: 34 * 1.08, // 36.72
         letterSpacing: 0,
-        color: '#3F414E',
+        color: '#E6E7F2',
         paddingTop: 20,
         marginBottom: 15
     },
@@ -229,7 +269,7 @@ const styles = StyleSheet.create({
         letterSpacing: 0.7, // 5% von 14px
         marginTop: 10,
         marginBottom: 15,
-        color: '#A1A4B2',
+        color: '#98A1BD',
     },
     text3: {
         fontFamily: 'HelveticaNeue',
@@ -238,7 +278,7 @@ const styles = StyleSheet.create({
         lineHeight: 16 * 1.45, // 23.2
         letterSpacing: 0,
         marginBottom: 30,
-        color: '#A1A4B2',
+        color: '#98A1BD',
         paddingRight: 40,
     },
     text4: {

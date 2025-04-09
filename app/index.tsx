@@ -23,11 +23,11 @@ const Index = () => {
 
       <Text style={styles.headline2}>We are what we do</Text>
       <Text style={styles.text1}>Thousand of people are usign silent moon for smalls meditation </Text>
-       <Link style={styles.link} href="/(onboarding)/registration">SIGN UP</Link>
-      {/* <Link style={styles.link} href="/(tabs)/home">SIGN UP</Link> */}
+       {/* <Link style={styles.link} href="/onboarding/registration">SIGN UP</Link> */}
+      <Link style={styles.link} href="/(tabs)/sleep">SIGN UP</Link>
       <Text style={styles.text2} >
         ALREADY HAVE AN ACCOUNT?{' '}
-        <Link style={styles.loginText} href="/(onboarding)/login">LOG INN</Link>
+        <Link style={styles.loginText} href="/onboarding/login">LOG IN</Link>
       </Text>
     </View>
 
@@ -86,13 +86,14 @@ const styles = StyleSheet.create({
     width: '90%',
     padding: 20,
     backgroundColor: '#8E97FD',
-    color: 'white',
+    color: '#F6F1FB',
     borderRadius: 25,
     marginTop: 10,
     justifyContent: 'center',
     textAlign: 'center',
   },
   image_welcome2: {
+    marginTop: 30,
     paddingLeft: 20,
     justifyContent: 'center',
     alignItems: 'center',
@@ -138,6 +139,6 @@ const styles = StyleSheet.create({
     lineHeight: 15.12,
     letterSpacing: 0.7,
     color: '#3F414E', // Optional: andere Farbe oder Stil
-    textDecorationLine: 'underline', // falls du es klickbar aussehen lassen willst
+    textDecorationLine: 'none', // falls du es klickbar aussehen lassen willst
   },
 })

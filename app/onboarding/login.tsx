@@ -52,18 +52,18 @@ const login = () => {
 
             <Text style={styles.text}>OR LOG IN WITH EMAIL</Text>
 
-            <TextInput style={styles.input} value={name} onChangeText={setName}></TextInput>
-            <TextInput style={styles.input} value={email} onChangeText={setEmail}></TextInput>
+            <TextInput style={styles.input} value={name} onChangeText={setName} placeholder='Email address' placeholderTextColor="#A1A4B2"></TextInput>
+            <TextInput style={styles.input} value={email} onChangeText={setEmail} placeholder='Password' placeholderTextColor="#A1A4B2"></TextInput>
 
-            <Link href="/(onboarding)/welcomePerson" style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={() => router.push('/onboarding/welcomePerson')}>
                 <Text style={styles.buttonText}>LOG IN</Text>
-            </Link>
+            </TouchableOpacity>
 
-            <Text style={styles.text_forget_password}>OR LOG IN WITH EMAIL</Text>
+            <Text style={styles.text_forget_password}>Forget Password?</Text>
 
             <Text style={styles.text_sign_up1}>
                 ALREADY HAVE AN ACCOUNT?{' '}
-                <Text style={styles.text_sign_up2} onPress={() => router.push('/(tabs)/home')}>
+                <Text style={styles.text_sign_up2} onPress={() => router.push('/onboarding/registration')}>
                     SIGN UP
                 </Text>
             </Text>
@@ -169,6 +169,7 @@ const styles = StyleSheet.create({
     },
 
     textInImage: {
+        paddingTop: 40,
         fontFamily: 'HelveticaNeue',
         fontWeight: '700',
         fontSize: 28,
@@ -187,7 +188,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',   // optional: zentriert anzeigen
       },
 
-    backButton: {
+      backButton: {
+        width: 55,
+        height: 55,
         position: 'absolute',
         top: 40,
         left: 20,
@@ -197,11 +200,13 @@ const styles = StyleSheet.create({
         borderColor: '#EBEAEC',
         borderRadius: 100,
         zIndex: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     backImage: {
-        width: 16,   // anpassen je nach Icon-Größe
-        height: 16,
+        width: 18,   // anpassen je nach Icon-Größe
+        height: 18,
         resizeMode: 'contain',
         color: '#3F414E',
     },
@@ -220,13 +225,15 @@ const styles = StyleSheet.create({
     },
     button: {
         marginTop: 20,
+        marginBottom: 20,
         width: '90%',
-        height: 50,
+        height: 63,
         paddingHorizontal: 20,
         borderRadius: 38,
         backgroundColor: '#8E97FD',
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
     },
     buttonText: {
         fontFamily: 'HelveticaNeue',
@@ -236,9 +243,17 @@ const styles = StyleSheet.create({
         letterSpacing: 0.7,      // 5% von 14px → 14 * 0.05
         color: 'white',
         textAlign: 'center',
+        alignSelf: 'center',
     },
     text_forget_password: {
-
+        marginTop: 20,
+        fontFamily: 'HelveticaNeue',
+        fontWeight: '400',
+        fontSize: 14,
+        lineHeight: 14 * 1.08, // 108%
+        letterSpacing: 0.7,    // 5% von 14px
+        textAlign: 'center',
+        color: '#3F414E',
     },
     text_sign_up1: {
         padding: 20,
@@ -258,7 +273,7 @@ const styles = StyleSheet.create({
         lineHeight: 15.12,
         letterSpacing: 0.7,
         color: '#3F414E', // Optional: andere Farbe oder Stil
-        textDecorationLine: 'underline', // falls du es klickbar aussehen lassen willst
+        textDecorationLine: 'none', // falls du es klickbar aussehen lassen willst
       },
 
 })
